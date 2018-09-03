@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class VideoDetails extends Component{
+class VideoListItem extends Component{
     render(){
         return(
             <div>
@@ -11,4 +11,4 @@ class VideoDetails extends Component{
     }
 }
 
-export default VideoDetails;
+export default VideoListItem;
