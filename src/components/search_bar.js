@@ -9,11 +9,16 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div>
-                <input type="text" className="form-control" placeholder="Search a Video..." 
-                    onChange = { event => this.setState({ searchValue : event.target.value }) }/>
+            <form className = 'search-bar row' onSubmit = { (event) => { event.preventDefault(); this.props.onSearchTerm(this.state.searchValue)} }>
+                <div className = 'col-md-11'>
+                    <input type="text" className="form-control" placeholder="Search a Video..." 
+                        onChange = { event => this.setState({ searchValue : event.target.value }) }/>
+                </div>
+                <div className="col-md-1">
+                    <button type="submit" className = "btn btn-primary search-button">Search</button>
+                </div>
                 <br/>
-            </div>
+            </form>
         );
     }
     

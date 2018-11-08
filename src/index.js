@@ -14,21 +14,19 @@ class App extends Component {
         super(params);
         this.state = { 
             videos: [],
-            selectedVideo: null
+            selectedVideo: null,
+            term: ''
         };
-
-        YTSearch({key: API_KEY, term: 'pewdiepie'}, (videos) => {
-            this.setState({ videos });
-            this.setState({selectedVideo : videos[0]})
-            console.log(videos);
-        });
+        
+        this.searchNewTerm('')
     }
     
     render(){
         return (
             <div>
+                <h2>Some simple React Tutorial</h2>
                 <div>
-                    <SearchBar/>
+                    <SearchBar onSearchTerm = { this.searchNewTerm }/>
                 </div>
                 <div className = 'row'>
                     <VideoDetails video = { this.state.selectedVideo }/>
@@ -44,9 +42,49 @@ class App extends Component {
 
     selectVideo = (selectedVideo) => {
         /*Every component in this main page that uses selectedVideo will re-render if it updates*/
-        this.setState({ selectedVideo: selectedVideo })
+        this.setState({ selectedVideo: selectedVideo });
+    }
+
+    searchNewTerm = (newTerm) => {
+
+        YTSearch({key: API_KEY, term: newTerm}, (videos) => {
+            this.setState({ 
+                videos, 
+                selectedVideo : videos[0]
+            });
+        });
+
     }
 }
 
 // Put it in the page
 ReactDOM.render(<App/>, document.querySelector(".container"));
+
+
+/*
+Final Notes:
+    A class extending from a Component like:
+        class MyComponent extends Component{
+            constructor(props){
+                this.state = {value:''}
+            }
+
+            render(){
+                return(
+                    //<you-html-code>
+                )
+            }
+        }
+    It's used when we want a component state.
+
+    If we want something more simpler, 
+    we can use a function component like
+        const myComponent = (props) => {
+            
+            render(){
+                return(
+                    //<you-html-code>
+                )
+            }
+        }
+*/

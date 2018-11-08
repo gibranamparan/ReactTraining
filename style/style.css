@@ -1,0 +1,7 @@
+.search-bar{
+    margin: 1em 0;
+}
+.search-bar .search-button{
+    position: absolute;
+    right: 0;
+}
